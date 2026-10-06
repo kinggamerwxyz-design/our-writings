@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Our Writings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1b4d;--blue:#1f4fd8;--sky:#8fb8ff;--ice:#eef4ff;--white:#fff;
+ --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;--hand:'Kalam','Segoe Print','Bradley Hand','Comic Sans MS',cursive;--sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--navy);color:var(--ice);font-family:var(--sans);line-height:1.6}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+
+/* cover */
+.cover{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:8vh 7vw 9vh}
+.page{background-color:var(--navy)}
+.cover h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.8rem,9vw,6.5rem);line-height:.98;margin:0 0 1.2rem;max-width:12ch;letter-spacing:-.01em}
+.cover p{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.6vw,1.6rem);max-width:34ch;margin:0 0 2.2rem;color:#dbe8ff}
+.go{align-self:flex-start;background:var(--white);color:var(--navy);border:0;border-radius:99px;padding:.8rem 1.6rem;cursor:pointer;font-weight:500}
+@media (prefers-reduced-motion:no-preference){.cover h1{animation:rise 1.2s ease both}@keyframes rise{from{opacity:0;transform:translateY(18px)}}}
+
+/* timeline */
+.wrap{max-width:720px;margin:0 auto;padding:12vh 20px 18vh}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:30px;font-size:.9rem;color:#b9cdf5;margin-bottom:3rem}
+.legend span:first-child{justify-self:end}.legend span:last-child{justify-self:start}
+.legend i{display:inline-block;width:.8rem;height:.8rem;border-radius:50%;margin-right:.45rem;vertical-align:-1px}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(143,184,255,.35)}
+.row{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:1.1rem}
+.row::after{content:'';position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;background:var(--sky);transform:translate(-50%,-50%)}
+.chip{border:0;cursor:pointer;border-radius:12px;padding:.7rem 1.1rem;font-family:var(--serif);font-size:1.2rem;font-weight:600;transition:transform .2s}
+.chip:hover{transform:scale(1.04)}
+.chip.shishir{grid-column:2;justify-self:start;background:var(--navy);color:var(--white)}
+.chip.nuha{grid-column:1;justify-self:end;background:var(--white);color:var(--navy)}
+.empty{text-align:center;color:#b9cdf5;font-family:var(--serif);font-size:1.3rem;font-style:italic}
+
+/* add button */
+.fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:54px;height:54px;border-radius:50%;border:0;background:var(--white);color:var(--navy);font-size:1.9rem;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.35);z-index:5}
+
+/* overlays */
+.overlay{position:fixed;inset:0;display:none;overflow-y:auto;z-index:10;padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(40px + env(safe-area-inset-bottom,0px))}
+.overlay.show{display:block}
+.rbox{max-width:620px;margin:6vh auto 0}
+.rdate{font-family:var(--serif);font-size:1.5rem;margin-bottom:1.4rem}
+.txt{font-family:var(--hand);font-weight:300;font-size:1.3rem;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere}
+.txt strong{font-weight:700}
+.rbox img{max-width:100%;border-radius:12px;display:block;margin:0 0 1.4rem}
+.lnk{display:inline-block;margin-bottom:1.2rem;padding:.7rem 1.2rem;border-radius:99px;text-decoration:none;font-weight:500;overflow-wrap:anywhere}
+.bar{display:flex;justify-content:space-between;max-width:620px;margin:0 auto}
+.btn{border:1px solid currentColor;background:transparent;border-radius:99px;padding:.5rem 1.1rem;cursor:pointer;font-size:.9rem}
+.overlay.shishir{color:var(--white)}.overlay.shishir .lnk{background:var(--white);color:var(--navy)}
+.overlay.nuha{color:var(--navy)}.overlay.nuha .lnk{background:var(--blue);color:var(--white)}
+
+/* panel */
+.panel{background:var(--navy);color:var(--ice)}
+.panel .rbox{margin-top:2vh}
+.panel h2{font-family:var(--serif);font-weight:400;font-size:2rem;margin:0 0 1rem}
+.panel h3{font-family:var(--serif);font-weight:400;font-size:1.4rem;margin:2.4rem 0 .6rem;padding-top:1.4rem;border-top:1px solid rgba(143,184,255,.3)}
+label{display:block;font-size:.9rem;color:#b9cdf5;margin:.9rem 0 .3rem}
+input[type=text],input[type=url],input[type=date],select,textarea{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(143,184,255,.4);border-radius:10px;padding:.65rem .8rem}
+select option{color:#000}
+textarea{min-height:170px;resize:vertical}
+.seg{display:flex;gap:.6rem}
+.seg button{flex:1;padding:.65rem;border-radius:10px;border:1px solid rgba(143,184,255,.5);background:transparent;cursor:pointer}
+.seg button.on[data-w=shishir]{background:var(--blue);border-color:var(--blue);color:#fff}
+.seg button.on[data-w=nuha]{background:#fff;color:var(--navy);border-color:#fff}
+.save{margin-top:1.4rem;width:100%;padding:.85rem;border-radius:99px;border:0;background:var(--white);color:var(--navy);font-weight:500;cursor:pointer}
+.hint{font-size:.82rem;color:#9db6e8;margin:.4rem 0 0}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--white);color:var(--navy);padding:.6rem 1.1rem;border-radius:99px;font-size:.9rem;z-index:30;display:none;max-width:90vw}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<div class="page" id="page">
+<section class="cover" id="cover">
+  <h1 id="title"></h1>
+  <p id="desc"></p>
+  <button class="go" onclick="document.getElementById('tl-wrap').scrollIntoView()">Read</button>
+</section>
+
+<main class="wrap" id="tl-wrap">
+  <div class="legend"><span><i style="background:#fff"></i>Nuha</span><span><i style="background:var(--navy)"></i>Shishir</span></div>
+  <div class="tl" id="tl"></div>
+</main>
+</div>
+
+
+<!-- reader -->
+<div class="overlay" id="reader">
+  <div class="bar"><button class="btn" id="rclose">Close</button></div>
+  <div class="rbox" id="rbody"></div>
+</div>
+
+
+<script>
+/* ===== EDIT YOUR CONTENT HERE ===== 
+   who: "shishir" (blue) or "nuha" (white). date: DD-MM-YYYY.
+   kind "text":  {who, date, kind:"text", text:`...`}   (put **double stars** around words to make them bold)
+   kind "photo": {who, date, kind:"photo", src:"photos/name.jpg", caption:"..."}
+   kind "link":  {who, date, kind:"link", url:"https://...", title:"...", text:"optional note"} */
+const CONTENT={
+ title:'Our little universe',
+ desc:'Everything we ever wrote about each other, kept in one quiet place.',
+ entries:[
+
+ {who:'shishir', date:'21-06-2026', kind:'link', url:'https://kinggamerwxyz-design.github.io/happybirthdayyy/birthday_surprise.html',
+ title:'Click Here', text:'Nuha\'s birthday. (Before the confession) \n-Shishir'},
+ 
+ 
+ {who:'shishir', date:'06-08-2026', kind:'text', text:` **The Confession**
+
+Bhai tumi ken bujho naaaaa???? Kennn???? Like im angry at this point!! Etto hints dei! Tao keno bojho naaaa je I LOVE YOU??
+Saradin tomar sathe etto kotha boli, saradin tomake etto jalai, tomak niyei bhabi saradin. Bt tumi ken bujhba?? Huhhhh???? Im just a normal, odinary guy with the biggest fear to lose you. Sorry, its on you, tumi e bolso bujhaite.
+Idk, im just truly madly deeply in love with you. Tumi to bujhba naaaa -_- ken e ba bujhbaaaaaa??
+Thak, na bojho tumi but i just cant lose you Nuha
+-Shishir`},
+
+ {who:'shishir', date:'09-08-2026', kind:'text', text:`And you pulled myself into you. To love you, adore you, respect you and again LOVE you. I said, "Im all yours". Im all yours to love you, adore you, respect you and LOVE you. I think of you more than breathing. My heart beats to love you more. Be mine, my heart is to keep you forever in there.
+Oh, I love you...
+-Shishir`},
+
+ {who:'nuha', date:'11-08-2026', kind:'text', text:`he came like rain
+just when the summer was becoming unbearable
+never knowing how badly i needed him.
+why wasn’t he there sooner
+when i was still waiting for the sky to break?
+-Nuha`},
+
+ {who:'shishir', date:'25-09-2026', kind:'text', text:`My chest is burning with sadness
+It needs no fire to become ashes
+Your silence is making my mind go crazy
+Even breathing feels like suffocating
+I just feel cold and lost
+
+You are mine
+
+Your silence is making my heart heavy
+My heart cries for you, cares for you
+Cause you are the only cure
+I wish I could tear my heart into pieces
+Just to fix yours with it
+-Shishir`},
+
+{who:'shishir', date:'23-09-2026', kind:'photo', src:'photos/Letter.png', caption:'A Letter from Shishir to Nuha \n-Shishir'},
+
+
+// {who:'me', date:'23-09-2026', kind:'text', text:`First line.`},
+
+// {who:'me', date:'23-09-2026', kind:'photo', src:'photos/us1.jpg', caption:'Our first trip'},
+
+// {who:'her', date:'23-09-2026', kind:'link', url:'https://example.com', title:'Her letter', text:'optional note'},
+  
+ ]
+};
+
+const $=s=>document.querySelector(s);
+const pd=s=>{const[d,m,y]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const fmt=s=>s.split('-').map(x=>x.padStart(2,'0')).join('-');
+const G={
+ 1:['linear-gradient(rgba(5,15,50,.3),rgba(5,15,50,.10))','linear-gradient(160deg,#0a1b4d,#1f4fd8 65%,#8fb8ff)'],
+ 2:['none','linear-gradient(160deg,#0a1b4d,#1f4fd8 70%,#dbe8ff)'],
+ 3:['none','linear-gradient(160deg,#fff,#e6efff 55%,#9fc0ff)']};
+function bg(el,n){const t=el.style;t.backgroundImage=G[n][0]+',url("backgrounds/img'+n+'.png"),'+G[n][1];t.backgroundRepeat='no-repeat,repeat-y,no-repeat';t.backgroundSize='auto,100% auto,auto';t.backgroundPosition='top center';t.backgroundAttachment='local'}
+
+function render(){
+  $('#title').textContent=CONTENT.title;$('#desc').textContent=CONTENT.desc;document.title=CONTENT.title;
+  bg($('#page'),1);
+  const L=$('#tl');L.innerHTML='';
+  if(!CONTENT.entries.length){L.innerHTML='<p class="empty">Nothing here yet.</p>';return}
+  [...CONTENT.entries].sort((a,b)=>pd(a.date)-pd(b.date)).forEach(e=>{
+    const r=document.createElement('div');r.className='row';
+    const b=document.createElement('button');b.className='chip '+e.who;b.textContent=fmt(e.date);b.onclick=()=>openEntry(e);
+    r.appendChild(b);L.appendChild(r)});
+}
+function rich(el,t){t.split('**').forEach((part,i)=>{if(!part)return;if(i%2){const b=document.createElement('strong');b.textContent=part;el.appendChild(b)}else el.appendChild(document.createTextNode(part))})}
+function openEntry(e){
+  const v=$('#reader');v.className='overlay show '+e.who;bg(v,e.who==='shishir'?2:3);
+  const c=$('#rbody');c.innerHTML='';
+  const d=document.createElement('div');d.className='rdate';d.textContent=fmt(e.date);c.appendChild(d);
+  if(e.kind==='photo'&&e.src){const i=new Image();i.src=e.src;i.alt='';c.appendChild(i)}
+  if(e.kind==='link'){const a=document.createElement('a');a.className='lnk';a.href=e.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=e.title||e.url;c.appendChild(a)}
+  const t=e.kind==='photo'?e.caption:e.text;
+  if(t){const p=document.createElement('div');p.className='txt';rich(p,t);c.appendChild(p)}
+  v.scrollTop=0;
+}
+const closeR=()=>$('#reader').classList.remove('show');
+$('#rclose').onclick=closeR;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeR()});
+render();
+</script>
+</body>
+</html>
